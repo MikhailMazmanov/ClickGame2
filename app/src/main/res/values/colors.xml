@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="ll">#88000000</color>
+    <color name="ll_weapone">#D5E9FA</color>
+    <color name="toolbar_bg">#65000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orange">#FFAE37</color>
+    <color name="green">#10A316</color>
+    <color name="yellow">#EFE162</color>
+    <color name="goldColor">#F3CC57</color>
+    <color name="red">#F3291A</color>
+    <color name="blue">#2196F3</color>
+    <color name="bg_ll">#7A000000</color>
+    <color name="lime">#E3896D</color>
+
+</resources>

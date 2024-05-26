@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/forest"
+    tools:context=".activity.MenuActivity">
+
+    <TextView
+        android:id="@+id/textView_start_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35sp"
+        android:text="Увлекательный мир"
+        android:textColor="@color/red"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="150dp">
+
+    </TextView>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp">
+        <TextView
+            android:id="@+id/goldtxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Золото:"
+            android:textSize="30sp"
+            android:textColor="@color/yellow"
+            />
+        <TextView
+            android:id="@+id/gold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="30sp"
+            android:textColor="@color/goldColor"
+            android:layout_marginLeft="10dp"
+            />
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="90dp"
+            android:orientation="vertical"
+            >
+
+            <Button
+                android:id="@+id/btnStart"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/orange"
+                android:text="Старт"
+                android:textColor="@color/white"/>
+
+              <Button
+                  android:id="@+id/btnShop"
+                  android:layout_width="250dp"
+                  android:layout_height="50dp"
+                  android:backgroundTint="@color/green"
+                  android:text="Магазин"
+                  android:textColor="@color/white"/>
+                  />
+            <Button
+                  android:id="@+id/btnStatistyc"
+                  android:layout_width="250dp"
+                  android:layout_height="50dp"
+                  android:backgroundTint="@color/red"
+                  android:text="Статистика"
+                  android:textColor="@color/white"/>
+                  />
+
+        </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

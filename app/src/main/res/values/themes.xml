@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ClickGame2" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="android:statusBarColor">@color/black</item> <!-- Черный цвет для верхней строки -->
+    </style>
+
+    <style name="Theme.ClickGame2" parent="Base.Theme.ClickGame2" />
+</resources>

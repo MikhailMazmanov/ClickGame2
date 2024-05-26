@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/cave"
+    android:id="@+id/RL"
+    tools:context=".activity.GameActivity">
+
+<!--    добавить текстВью в котором будет отображаться сколько еще нужно раз ударить моба чтоб выйграть-->
+<!--    counter-->
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitCenter"
+        android:contentDescription="@null" />
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Жизни моба: "
+            android:textColor="@color/goldColor"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/mobLives"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/red"
+            android:textSize="30dp"
+            />
+       </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentEnd="true"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ваша броня "
+            android:textColor="@color/green"
+            android:textSize="20dp"
+            />
+        <TextView
+            android:id="@+id/bron"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:text="100"
+
+            android:textSize="30dp"
+
+            />
+    </LinearLayout>
+        <TextView
+            android:id="@+id/winText"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="Вы выиграли!"
+            android:textSize="40sp"
+            android:textColor="@color/green"
+
+            />
+
+    <TextView
+        android:id="@+id/loseText"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Вы проиграли :(!"
+        android:textSize="40sp"
+        android:textColor="@color/red"
+
+        />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView2"-->
+<!--        android:layout_width="157dp"-->
+<!--        android:layout_height="143dp"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:clickable="true"-->
+<!--        android:onClick="onImageClick"-->
+<!--        android:src="@drawable/mob" />-->
+
+</RelativeLayout>
