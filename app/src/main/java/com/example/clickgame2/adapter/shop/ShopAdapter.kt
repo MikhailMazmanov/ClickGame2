@@ -8,12 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clickgame2.R
-import com.example.clickgame2.adapter.level.OnItemClick
-import com.example.clickgame2.data.PreferencesManager
 import com.example.clickgame2.entity.Weapon
 import com.example.clickgame2.service.setWeaponImage
 
-class ShopAdapter(var weapons: List<Weapon>,val click: OnItemClickWeapon) : RecyclerView.Adapter<ShopAdapter.ShopViewHolder>() {
+class ShopAdapter(var weapons: List<Weapon>, val click: OnItemClickWeapon) : RecyclerView.Adapter<ShopAdapter.ShopViewHolder>() {
 
 
     class ShopViewHolder(itemView: View,val onItemClickWeapon: OnItemClickWeapon) : RecyclerView.ViewHolder(itemView) {

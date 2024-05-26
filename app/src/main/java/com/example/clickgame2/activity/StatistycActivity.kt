@@ -3,9 +3,6 @@ package com.example.clickgame2.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
-import com.example.clickgame2.R
 import com.example.clickgame2.data.PreferencesManager
 import com.example.clickgame2.entity.User
 import com.example.clickgame2.databinding.ActivityStatistycBinding
