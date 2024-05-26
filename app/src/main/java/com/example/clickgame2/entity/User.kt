@@ -11,9 +11,5 @@ class User(
     @ColumnInfo(name = "balance") var balance:Int
 
 ) {
-   // var attack:Int
 
-//    init {
-//        attack = weapon.power
-//    }
 }
