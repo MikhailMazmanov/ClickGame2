@@ -64,13 +64,8 @@ class MenuActivity : AppCompatActivity() {
         mediaPlayer?.start()
     }
     fun init() {
-        val weaponeName = preferencesManager.getString("weaponName")
-        if (weaponeName == "no"){
-            preferencesManager.putString("weaponName","Деревяный меч")
-            preferencesManager.putInt("weaponPower",10)
-            preferencesManager.putInt("weaponPrice" , 200)
-            preferencesManager.putInt("weaponId" , 1)
-        }
+        val weaponId = preferencesManager.getInt("weapon_id")
+
 
         binding.gold.text = preferencesManager.getInt("gold").toString()
         val def = preferencesManager.getInt("def")
@@ -78,10 +73,6 @@ class MenuActivity : AppCompatActivity() {
             preferencesManager.putInt("def", 100)
         }
 
-        val attack = preferencesManager.getInt("attack")
-        if (attack == 0) {
-            preferencesManager.putInt("attack", 1)
-        }
     }
 
 

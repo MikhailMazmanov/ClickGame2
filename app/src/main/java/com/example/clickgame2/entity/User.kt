@@ -11,7 +11,8 @@ package com.example.clickgame2.entity
 //}
 
 
-class User(
+class
+User(
     var id: Long = 0,
     var armor: Int,
     var balance: Int,

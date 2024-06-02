@@ -17,10 +17,8 @@ fun setWeaponImage(weapon: Weapon, image:ImageView) {
 }
 
 fun createWeapone(preferencesManager: PreferencesManager): Weapon{
-    val weaponeName = preferencesManager.getString("weaponName")
-    val weaponePrice = preferencesManager.getInt("weaponPrice")
-    val weaponeId = preferencesManager.getInt("weapoeId")
-    val weaponePower = preferencesManager.getInt("weaponPower")
+    //получить id оружия изsharedPreference
+    val weapon //вытащить из базы данных оружие
     return Weapon(weaponeId.toLong(),weaponeName,weaponePower,weaponePrice)
 
 }

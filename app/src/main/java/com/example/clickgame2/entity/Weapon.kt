@@ -13,8 +13,12 @@ class Weapon(
     @ColumnInfo(name = "name_weapon") val name: String,
     @ColumnInfo(name = "power") var power: Int,
     @ColumnInfo(name = "price") var price: Int,
-    //@ColumnInfo(name = "user_id") var userId: Long
+    @ColumnInfo(name = "is_pay") var isPay: Boolean,
+    @ColumnInfo(name ="is_selected")var isSelected:Boolean
+
+    //@Colum nInfo(name = "user_id") var userId: Long
 ) {
+
 
 
 }

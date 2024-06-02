@@ -16,7 +16,7 @@ class PreferencesManager(context: Context) {
 
     }
        fun getInt(key: String?):Int{
-           val value = sharedPreferences.getInt(key, 0)
+           val value = sharedPreferences.getInt(key, 1)
            return value
        }
 
