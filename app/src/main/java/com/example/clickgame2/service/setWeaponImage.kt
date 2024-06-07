@@ -16,10 +16,8 @@ fun setWeaponImage(weapon: Weapon, image:ImageView) {
 
 }
 
-fun createWeapone(preferencesManager: PreferencesManager): Weapon{
-    //получить id оружия изsharedPreference
-    val weapon //вытащить из базы данных оружие
-    return Weapon(weaponeId.toLong(),weaponeName,weaponePower,weaponePrice)
+fun createWeapone(): Weapon{
+    return Weapon(1,"",12,12,true,true)
 
 }
 

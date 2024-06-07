@@ -27,16 +27,16 @@ class StatistycActivity : AppCompatActivity() {
 
    private fun init(){
 
-        val weapon = createWeapone(preferencesManager);
-        val def = preferencesManager.getInt("def")
-        var user = User(def,weapon)
+        val weapon = createWeapone();
+        //val def = preferencesManager.getInt("def")
+       // var user = User(def,weapon)
 
-        binding.attackTxt.text = user.attack.toString()
-        binding.armorTxt.text = user.armor.toString()
-        binding.weaponType.text = user.weapon.name
+       // binding.attackTxt.text = user.attack.toString()
+       // binding.armorTxt.text = user.armor.toString()
+       // binding.weaponType.text = user.weapon.name
 
         val image = binding.image
-        setWeaponImage(user.weapon,image)
+        setWeaponImage(weapon,image)
 
     }
 
@@ -49,13 +49,8 @@ class StatistycActivity : AppCompatActivity() {
     }
 
 
-    private fun createWeapone(preferencesManager: PreferencesManager): Weapon{
-        val weaponeName = preferencesManager.getString("weaponName")
-        val weaponePrice = preferencesManager.getInt("weaponPrice")
-        val weaponeId = preferencesManager.getInt("weapoeId")
-        val weaponePower = preferencesManager.getInt("weaponPower")
-        return Weapon(weaponeId.toLong(),weaponeName,weaponePower,weaponePrice)
-
+    private fun createWeapone(): Weapon{
+        return Weapon(1,"",12,12,true,true)
 
     }
 }

@@ -30,9 +30,9 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
         preferencesManager = PreferencesManager(this)
 
-        val weapon = createWeapone(preferencesManager)
+        val weapon = createWeapone()
 
-        user = User(preferencesManager.getInt("def"),weapon)
+        user = User(1,100,preferencesManager.getInt("balance"), weapon)
 
         var level: Int = intent.getIntExtra("level", 2)
         when (level) {
@@ -102,7 +102,7 @@ class GameActivity : AppCompatActivity() {
     fun mobOnClick() {
         binding.imageView1.setOnClickListener {
             if (counter > 0) {
-                counter-= user.attack
+                counter-= user.weapone.power
                 binding.mobLives.text = counter.toString()
                 var idAudio = resources.getIdentifier("hit", "raw", packageName)
                 playAudio(idAudio)

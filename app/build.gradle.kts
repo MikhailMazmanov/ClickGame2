@@ -43,14 +43,16 @@ android {
 }
 
 dependencies {
-    implementation ("androidx.room:room-runtime:2.4.3")
-    kapt("androidx.room:room-compiler:2.4.3")
-    implementation ("androidx.room:room-ktx:2.4.3")
+// Room
+    implementation ("androidx.room:room-runtime:2.6.1")
+    kapt ("androidx.room:room-compiler:2.6.1")
+    implementation ("androidx.room:room-ktx:2.6.1")
 
+    // Threads
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
+    // UI
+    implementation ("com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9")
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")

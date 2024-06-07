@@ -23,11 +23,11 @@ class ShopActivity : AppCompatActivity(),OnItemClickWeapon{
 
         levelsIntent()
 
-        var weapon1 = Weapon(1,"Деревянный меч",10,200)
-        var weapon2 = Weapon(2,"Каменный меч",35, 400)
-        var weapon3 = Weapon(3,"Железный меч",75,650)
-        var weapon4 = Weapon(4,"Золотой меч",105,800)
-        var weapon5 = Weapon(5,"Алмазный меч",250,1500)
+        var weapon1 = Weapon(1,"Деревянный меч",10,200,false,false)
+        var weapon2 = Weapon(2,"Каменный меч",35, 400,false,false)
+        var weapon3 = Weapon(3,"Железный меч",75,650,false,false)
+        var weapon4 = Weapon(4,"Золотой меч",105,800,false,false)
+        var weapon5 = Weapon(5,"Алмазный меч",250,1500,false,false)
 
         var list = listOf<Weapon>(weapon1,weapon2,weapon3,weapon4,weapon5)
 
