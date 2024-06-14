@@ -12,7 +12,8 @@ import com.example.clickgame2.data.PreferencesManager
 import com.example.clickgame2.R
 import com.example.clickgame2.entity.User
 import com.example.clickgame2.databinding.ActivityGameBinding
-import com.example.clickgame2.service.createWeapone
+import com.example.clickgame2.entity.Weapon
+import com.example.clickgame2.service.createListWeapon
 
 
 class GameActivity : AppCompatActivity() {
@@ -30,7 +31,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(binding.root)
         preferencesManager = PreferencesManager(this)
 
-        val weapon = createWeapone()
+        val weapon = createListWeapon().get(0)
 
         user = User(1,100,preferencesManager.getInt("balance"), weapon)
 

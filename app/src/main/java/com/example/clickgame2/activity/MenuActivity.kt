@@ -7,19 +7,33 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.example.clickgame2.data.PreferencesManager
+import com.example.clickgame2.data.room.App
+import com.example.clickgame2.data.room.MyDataBase
+import com.example.clickgame2.data.room.WeaponDao
 import com.example.clickgame2.databinding.ActivityMenuBinding
+import com.example.clickgame2.service.createListWeapon
+
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MenuActivity : AppCompatActivity() {
     lateinit var binding: ActivityMenuBinding
     lateinit var preferencesManager: PreferencesManager
     private var startSound = true
+
+    lateinit var dao: WeaponDao
+    lateinit var db: MyDataBase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMenuBinding.inflate(layoutInflater)
         preferencesManager = PreferencesManager(this)
         setContentView(binding.root)
 
+        db = App().getMyDataBase()
+        dao = db.weaponDao()
         if (startSound == true) {
             var idAudio = resources.getIdentifier("open", "raw", packageName)
             playAudio(idAudio)
@@ -30,7 +44,7 @@ class MenuActivity : AppCompatActivity() {
         shop()
         init()
         statistyc()
-
+        instructionsIntent()
 
 //        val weapon = preferencesManager.getString("weapon")
 //
@@ -63,7 +77,17 @@ class MenuActivity : AppCompatActivity() {
         }
         mediaPlayer?.start()
     }
+
     fun init() {
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val weapons = dao.getWeapons()
+            if (weapons.size == 0){
+               // dao.insertWeapons(createListWeapon())
+            }
+        }
+
+
         val weaponId = preferencesManager.getInt("weapon_id")
 
 
@@ -72,6 +96,7 @@ class MenuActivity : AppCompatActivity() {
         if (def == 0) {
             preferencesManager.putInt("def", 100)
         }
+
 
     }
 
@@ -90,11 +115,20 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-     fun statistyc(){
-         binding.btnStatistyc.setOnClickListener(){
-             val intent = Intent(this , StatistycActivity::class.java)
-             startActivity(intent)
-         }
-     }
+
+    fun statistyc() {
+        binding.btnStatistyc.setOnClickListener() {
+            val intent = Intent(this, StatistycActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+
+    fun instructionsIntent() {
+        binding.btnHowToPlay.setOnClickListener() {
+            val intent = Intent(this, Instructions::class.java)
+            startActivity(intent)
+        }
+    }
 }
 

@@ -13,5 +13,6 @@
     <color name="blue">#2196F3</color>
     <color name="bg_ll">#7A000000</color>
     <color name="lime">#E3896D</color>
+    <color name="btn">#AFAFAF</color>
 
 </resources>

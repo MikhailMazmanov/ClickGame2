@@ -2,10 +2,10 @@ package com.example.clickgame2.data.room
 
 
 import androidx.room.Dao;
+import androidx.room.Insert
 import androidx.room.Query;
 
 import com.example.clickgame2.entity.Weapon;
-
 
 
 @Dao
@@ -15,7 +15,7 @@ interface WeaponDao {
     suspend fun getWeapons(): List<Weapon>
 
     @Query("UPDATE weapons SET is_selected = false")
-    suspend fun setSelectedAllFalse():Int
+    suspend fun setSelectedAllFalse(): Int
 
     @Query("UPDATE weapons SET is_pay = :isPay WHERE id = :id")
     suspend fun setIsPayById(isPay: Boolean, id: Int)
@@ -25,4 +25,14 @@ interface WeaponDao {
 
     @Query("SELECT * FROM weapons WHERE id = :id")
     suspend fun getWeaponById(id: Int): Weapon?
+
+    //добавить
+    @Insert
+    fun insertWeapon(weapon: Weapon)
+
+    @Insert
+    fun insertWeapons(weapon: List<Weapon>)
+
+
 }
+

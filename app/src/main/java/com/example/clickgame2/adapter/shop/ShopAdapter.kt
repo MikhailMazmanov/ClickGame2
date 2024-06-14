@@ -23,8 +23,10 @@ class ShopAdapter(var weapons: List<Weapon>, val click: OnItemClickWeapon) : Rec
 
 
         fun bind(weapon: Weapon) {
-            onItemClickWeapon.click(weapon.name)
-
+            if (weapon.isPay){
+                btnBuy.isClickable = false
+                btnBuy.text = "Купленно"
+            }
             attackTxt.text = weapon.power.toString()
             priceTxt.text = weapon.price.toString()
             nameWeapone.text = weapon.name.toString()
@@ -33,7 +35,7 @@ class ShopAdapter(var weapons: List<Weapon>, val click: OnItemClickWeapon) : Rec
 
             //получить баланс юзера если его хватает то срабатывает метод покупки
             btnBuy.setOnClickListener(){
-               //onItemClick.click()
+                onItemClickWeapon.click(weapon.id)
 
             }
         }
