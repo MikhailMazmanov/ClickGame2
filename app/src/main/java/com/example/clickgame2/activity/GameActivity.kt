@@ -10,10 +10,16 @@ import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import com.example.clickgame2.data.PreferencesManager
 import com.example.clickgame2.R
+import com.example.clickgame2.data.room.App
+import com.example.clickgame2.data.room.MyDataBase
+import com.example.clickgame2.data.room.WeaponDao
 import com.example.clickgame2.entity.User
 import com.example.clickgame2.databinding.ActivityGameBinding
 import com.example.clickgame2.entity.Weapon
 import com.example.clickgame2.service.createListWeapon
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class GameActivity : AppCompatActivity() {
@@ -23,17 +29,34 @@ class GameActivity : AppCompatActivity() {
     var counter = 0
     var ingreso = 0
     var attack = 0
+
     lateinit var preferencesManager: PreferencesManager
     lateinit var user: User
+    lateinit var dao: WeaponDao
+    lateinit var db: MyDataBase
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGameBinding.inflate(layoutInflater)
         setContentView(binding.root)
         preferencesManager = PreferencesManager(this)
 
-        val weapon = createListWeapon().get(0)
+        db = App().getMyDataBase()
+        dao = db.weaponDao()
 
-        user = User(1,100,preferencesManager.getInt("balance"), weapon)
+        var weaponSelected:Weapon = createListWeapon()[0]
+        
+        CoroutineScope(Dispatchers.IO).launch {
+          var list =  dao.getWeapons()
+            for (weapon in list) {
+                if(weapon.isSelected){
+                   weaponSelected = weapon
+                }
+            }
+        }
+
+
+        user = User(1,100,preferencesManager.getInt("balance"), weaponSelected)
 
         var level: Int = intent.getIntExtra("level", 2)
         when (level) {

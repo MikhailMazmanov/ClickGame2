@@ -5,6 +5,6 @@ import androidx.room.RoomDatabase
 import com.example.clickgame2.entity.Weapon
 
 @Database(entities = [Weapon::class], version = 1)
-abstract class MyDataBase : RoomDatabase() {
+abstract class MyDataBase : RoomDatabase(), WeaponDao {
     abstract  fun weaponDao() :WeaponDao
 }

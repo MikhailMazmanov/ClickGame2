@@ -16,10 +16,13 @@ import com.example.clickgame2.entity.Weapon
 import com.example.clickgame2.service.createListWeapon
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
-class ShopActivity : AppCompatActivity(),OnItemClickWeapon{
-    lateinit var binding :ActivityShopBinding
+class ShopActivity : AppCompatActivity(), OnItemClickWeapon {
+    lateinit var binding: ActivityShopBinding
     lateinit var preferencesManager: PreferencesManager
     lateinit var dao: WeaponDao
     lateinit var db: MyDataBase
@@ -42,33 +45,39 @@ class ShopActivity : AppCompatActivity(),OnItemClickWeapon{
             dao.getWeapons()
         }
 
-        binding.recyclerView.adapter = ShopAdapter(list,this)
+        binding.recyclerView.adapter = ShopAdapter(list, this)
 
     }
 
 
-    fun getWeaponByIdFromList(id:Long , list:List<Weapon>) :Weapon{
-       return list.filter{it.id == id}.get(0)
+    fun getWeaponByIdFromList(id: Long, list: List<Weapon>): Weapon {
+        return list.filter { it.id == id }.get(0)
     }
 
-    override fun click(id:Long) {
-        var weapone = getWeaponByIdFromList(id,createListWeapon())
-
+    override suspend fun click(id: Long): Boolean {
+        var weapon = getWeaponByIdFromList(id, createListWeapon())
+        var isPay = false
         val balance = preferencesManager.getInt("balance")
-        if (balance >= weapone.price){
-            CoroutineScope(Dispatchers.IO).launch {
-                dao.setIsPayById(true,id.toInt())
+        if (balance >= weapon.price) {
+            withContext(Dispatchers.IO) {
+                dao.setIsPayById(true, id.toInt())
                 dao.setSelectedAllFalse()
-                dao.setSelectedById(true,id.toInt())
+                dao.setSelectedById(true, id.toInt())
+            }
+            withContext(Dispatchers.Main) {
+                isPay = true
             }
         }
+        return isPay
     }
 
-   fun levelsIntent(){
-       binding.btnToolbarMenu.setOnClickListener() {
-           val intent = Intent(this, MenuActivity::class.java)
-           startActivity(intent)
-           finish()
-       }
-   }
+
+
+    fun levelsIntent() {
+    binding.btnToolbarMenu.setOnClickListener() {
+        val intent = Intent(this, MenuActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+}
 }

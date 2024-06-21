@@ -17,6 +17,8 @@ User(
     var armor: Int,
     var balance: Int,
     var weapone: Weapon
+
+
 ) {
 
 }

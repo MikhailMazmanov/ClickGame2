@@ -8,8 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.clickgame2.R
+import com.example.clickgame2.data.room.App
+import com.example.clickgame2.data.room.MyDataBase
+import com.example.clickgame2.data.room.WeaponDao
 import com.example.clickgame2.entity.Weapon
 import com.example.clickgame2.service.setWeaponImage
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ShopAdapter(var weapons: List<Weapon>, val click: OnItemClickWeapon) : RecyclerView.Adapter<ShopAdapter.ShopViewHolder>() {
 
@@ -21,8 +27,15 @@ class ShopAdapter(var weapons: List<Weapon>, val click: OnItemClickWeapon) : Rec
         val nameWeapone: TextView = itemView.findViewById(R.id.name)
         var image: ImageView = itemView.findViewById(R.id.image)
 
+        lateinit var dao: WeaponDao
+        lateinit var db: MyDataBase
+
 
         fun bind(weapon: Weapon) {
+            db = App().getMyDataBase()
+            dao = db.weaponDao()
+
+
             if (weapon.isPay){
                 btnBuy.isClickable = false
                 btnBuy.text = "Купленно"
@@ -35,7 +48,20 @@ class ShopAdapter(var weapons: List<Weapon>, val click: OnItemClickWeapon) : Rec
 
             //получить баланс юзера если его хватает то срабатывает метод покупки
             btnBuy.setOnClickListener(){
-                onItemClickWeapon.click(weapon.id)
+                var isPay  = onItemClickWeapon.click(weapon.id)
+                CoroutineScope(Dispatchers.IO).launch {
+                    dao.setSelectedAllFalse();
+                    dao.setIsPayById(true,weapon.id.toInt())
+                    dao.setSelectedById(true,weapon.id.toInt())
+                }
+
+
+
+
+                attackTxt.text = weapon.power.toString()
+                priceTxt.text = weapon.price.toString()
+                nameWeapone.text = weapon.name.toString()
+                setWeaponImage(weapon,image)
 
             }
         }
