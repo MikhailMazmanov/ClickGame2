@@ -27,41 +27,37 @@ class ShopAdapter(var weapons: List<Weapon>, val click: OnItemClickWeapon) : Rec
         val nameWeapone: TextView = itemView.findViewById(R.id.name)
         var image: ImageView = itemView.findViewById(R.id.image)
 
-        lateinit var dao: WeaponDao
-        lateinit var db: MyDataBase
+        //lateinit var dao: WeaponDao
+        //lateinit var db: MyDataBase
 
 
-        fun bind(weapon: Weapon) {
-            db = App().getMyDataBase()
-            dao = db.weaponDao()
+        fun  bind(weapon: Weapon) {
+            //db = App().getMyDataBase()
+            //dao = db.weaponDao()
 
-
+            //если оружие куплено , то кнопка становится не кликабельной
             if (weapon.isPay){
                 btnBuy.isClickable = false
                 btnBuy.text = "Купленно"
             }
+
+            //отображаем информацию в Recycler очередного weapon
             attackTxt.text = weapon.power.toString()
             priceTxt.text = weapon.price.toString()
             nameWeapone.text = weapon.name.toString()
             setWeaponImage(weapon,image)
-            //на полученных данных собрать объект weapone
 
-            //получить баланс юзера если его хватает то срабатывает метод покупки
+
+
+            //при попытке покупки оружия запускается функция click в ShopActivity , которая покупает оружие
+            //если на балансе достаточно средств
             btnBuy.setOnClickListener(){
-                var isPay  = onItemClickWeapon.click(weapon.id)
-                CoroutineScope(Dispatchers.IO).launch {
-                    dao.setSelectedAllFalse();
-                    dao.setIsPayById(true,weapon.id.toInt())
-                    dao.setSelectedById(true,weapon.id.toInt())
+                CoroutineScope(Dispatchers.Main).launch {
+                   var resultPay =  onItemClickWeapon.click(weapon.id)
+                    if (resultPay){
+                        btnBuy.text="купленно"
+                    }
                 }
-
-
-
-
-                attackTxt.text = weapon.power.toString()
-                priceTxt.text = weapon.price.toString()
-                nameWeapone.text = weapon.name.toString()
-                setWeaponImage(weapon,image)
 
             }
         }

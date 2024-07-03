@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.example.clickgame2.entity.Weapon
 
-@Database(entities = [Weapon::class], version = 1)
+@Database(entities = [Weapon::class], version = 2)
 abstract class MyDataBase : RoomDatabase(), WeaponDao {
     abstract  fun weaponDao() :WeaponDao
 }

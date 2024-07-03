@@ -45,7 +45,7 @@ class ShopActivity : AppCompatActivity(), OnItemClickWeapon {
             dao.getWeapons()
         }
 
-        binding.recyclerView.adapter = ShopAdapter(list, this)
+        binding.recyclerView.adapter = ShopAdapter(list, this@ShopActivity)
 
     }
 
@@ -60,9 +60,9 @@ class ShopActivity : AppCompatActivity(), OnItemClickWeapon {
         val balance = preferencesManager.getInt("balance")
         if (balance >= weapon.price) {
             withContext(Dispatchers.IO) {
-                dao.setIsPayById(true, id.toInt())
-                dao.setSelectedAllFalse()
-                dao.setSelectedById(true, id.toInt())
+                dao.setSelectedAllFalse()// всем оружиям ставим статус не выбранны
+                dao.setIsPayById(true,weapon.id.toInt())// меняем статус оружия на купленно по id оружия на которое нажали
+                dao.setSelectedById(true,weapon.id.toInt())//меняем статус оружия на выбранно
             }
             withContext(Dispatchers.Main) {
                 isPay = true
